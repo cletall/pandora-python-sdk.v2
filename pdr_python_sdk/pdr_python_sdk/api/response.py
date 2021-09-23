@@ -15,6 +15,7 @@ import json
 
 HTTP_CODE_KEY = "http_code"
 ACTUAL_RESPONSE_KEY = "actual_response"
+CONTENT_TYPE_KEY = "content_type"
 
 
 class Response(object):
@@ -22,13 +23,15 @@ class Response(object):
     http response content
     """
 
-    def __init__(self, http_code, actual_response):
+    def __init__(self, http_code, actual_response, content_type="application/json; charset=UTF-8"):
         self.http_code = http_code
         self.actual_response = actual_response
+        self.content_type = content_type
 
     def to_string(self):
         response = {
             HTTP_CODE_KEY: self.http_code,
             ACTUAL_RESPONSE_KEY: self.actual_response,
+            CONTENT_TYPE_KEY: self.content_type
         }
         return json.dumps(response)
